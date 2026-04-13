@@ -9,9 +9,22 @@ import { ForgotPassword } from './forgot-password/forgot-password';
 import { Pagemnotfound } from './pagemnotfound/pagemnotfound';
 import { FormsModule } from '@angular/forms';
 import { Home } from './home/home';
+import { Sidebar } from './sidebar/sidebar';
+import { Header } from './header/header';
+import { AdminDashboard } from './admin-dashboard/admin-dashboard';
 
 @NgModule({
-  declarations: [App, Login, Register, ForgotPassword, Pagemnotfound, Home],
+  declarations: [
+    App,
+    Login,
+    Register,
+    ForgotPassword,
+    Pagemnotfound,
+    Home,
+    Sidebar,
+    Header,
+    AdminDashboard,
+  ],
   imports: [BrowserModule, AppRoutingModule, FormsModule],
   providers: [provideBrowserGlobalErrorListeners(), provideClientHydration(withEventReplay())],
   bootstrap: [App],
