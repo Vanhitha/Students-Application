@@ -1,5 +1,7 @@
 import { Component, AfterViewInit, ElementRef, ViewChild } from '@angular/core';
 import { Chart } from 'chart.js/auto';
+import { isPlatformBrowser } from '@angular/common';
+import { Inject, PLATFORM_ID } from '@angular/core';
 
 @Component({
   selector: 'app-admin-dashboard',
@@ -60,18 +62,25 @@ tasks = [
   @ViewChild('earningsChart') earningsChart!: ElementRef<HTMLCanvasElement>;
   @ViewChild('expensesChart') expensesChart!: ElementRef<HTMLCanvasElement>;
 
+  constructor(@Inject(PLATFORM_ID) private platformId: object) {}
+
   ngAfterViewInit(): void {
+  if (!isPlatformBrowser(this.platformId)) return;
+
+  setTimeout(() => {
     this.initAttendanceChart();
     this.loadFeesChart();
     this.loadEarningsChart();
     this.loadExpensesChart();
-  }
+  });
+}
 
   // ---------------- ATTENDANCE CHART ----------------
   initAttendanceChart(): void {
-    const canvas = this.attendanceChart?.nativeElement;
-    if (!canvas) return;
+    if (!isPlatformBrowser(this.platformId)) return;
 
+    const canvas = this.attendanceChart?.nativeElement;
+    
     const ctx = canvas.getContext('2d');
     if (!ctx) return;
 
