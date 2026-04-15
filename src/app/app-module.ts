@@ -1,5 +1,9 @@
 import { NgModule, provideBrowserGlobalErrorListeners } from '@angular/core';
-import { BrowserModule, provideClientHydration, withEventReplay } from '@angular/platform-browser';
+import {
+  BrowserModule,
+  provideClientHydration,
+  withEventReplay,
+} from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing-module';
 import { App } from './app';
@@ -12,6 +16,7 @@ import { Home } from './home/home';
 import { Sidebar } from './sidebar/sidebar';
 import { Header } from './header/header';
 import { AdminDashboard } from './admin-dashboard/admin-dashboard';
+import { Myprofile } from './myprofile/myprofile';
 
 @NgModule({
   declarations: [
@@ -24,9 +29,13 @@ import { AdminDashboard } from './admin-dashboard/admin-dashboard';
     Sidebar,
     Header,
     AdminDashboard,
+    Myprofile,
   ],
   imports: [BrowserModule, AppRoutingModule, FormsModule],
-  providers: [provideBrowserGlobalErrorListeners(), provideClientHydration(withEventReplay())],
+  providers: [
+    provideBrowserGlobalErrorListeners(),
+    provideClientHydration(withEventReplay()),
+  ],
   bootstrap: [App],
 })
 export class AppModule {}

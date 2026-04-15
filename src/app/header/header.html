@@ -60,11 +60,19 @@
     <button class="btn btn-light border">
       <i class="bi bi-arrows-fullscreen"></i>
     </button>
-
-    
-     <button class="btn btn-light border">
-      <i class="bi bi-person-circle w-100 h-100"></i> 
-    </button>
+     <div class="dropdown-center">
+  <button class="btn btn-light dropdown-toggle" type="button" data-bs-toggle="dropdown" >
+  <img [src]="user?.profileImage "
+     class="rounded-circle"
+     width="22"
+     height="22" />
+  </button>
+  <ul class="dropdown-menu">
+    <li><a class="dropdown-item" routerLink="/home/myprofile">My Profile</a></li>
+    <li><a class="dropdown-item" routerLink="/settings">Settings</a></li>
+    <li><a class="dropdown-item" routerLink="/login">Logout</a></li>
+  </ul>
+</div>
 
   </div>
 
