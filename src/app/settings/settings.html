@@ -1,18 +1,24 @@
- <div class="col-lg-3 col-md-4 mb-3">
+<div class="row w-100">
 
-      <div class="list-group shadow-sm">
-        <a class="list-group-item list-group-item-action active" routerLink="home/settings/profile">
-          Profile Settings
-        </a>
-        <a class="list-group-item list-group-item-action" routerLink="home/settings/security">
-          Security Settings
-        </a>
-        <a class="list-group-item list-group-item-action" routerLink="home/settings/notifications">
-          Notifications
-        </a>
-        <a class="list-group-item list-group-item-action" routerLink="home/settings/connected-apps">
-          Connected Apps
-        </a>
-      </div>
-
+  <div class="col-lg-3 col-md-4 mb-3 mb-lg-0">
+    <div class="list-group shadow-sm">
+      <a class="list-group-item list-group-item-action " routerLink="profile-settings" routerLinkActive="active">
+        Profile Settings
+      </a>
+      <a class="list-group-item list-group-item-action " routerLink="security-settings" routerLinkActive="active">
+        Security Settings
+      </a>
+      <a class="list-group-item list-group-item-action" routerLink="notifications" routerLinkActive="active">
+        Notifications
+      </a>
+      <a class="list-group-item list-group-item-action" routerLink="connected-apps" routerLinkActive="active">
+        Connected Apps
+      </a>
     </div>
+  </div>
+
+  <div class="col-lg-9 col-md-8">
+    <router-outlet></router-outlet>
+  </div>
+
+</div>

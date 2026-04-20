@@ -1,42 +1,22 @@
-<div class="container-fluid py-3">
-
-  <!-- Header -->
-  <div class="d-flex justify-content-between align-items-center mb-3">
-    <div>
-      <h4 class="mb-0">General Settings</h4>
-      <small class="text-muted">Dashboard / Settings / General Settings</small>
-    </div>
-
-    <div class="d-flex gap-2">
-      <button class="btn btn-light border">Cancel</button>
-      <button class="btn btn-primary">Save</button>
-    </div>
+<!-- Header -->
+<div class="row mb-3">
+  <!-- Left side -->
+  <div class="col-12 col-md-6 mb-2">
+    <h4 class="mb-0">General Settings</h4>
+    <small class="text-muted">Dashboard / Settings / General Settings</small>
   </div>
 
-  <div class="row">
+  <!-- Right side (buttons) -->
+  <div class="col-12 col-md-6 d-flex justify-content-md-end gap-2">
+    <button class="btn btn-light border">Cancel</button>
+      <button class="btn btn-primary">Save</button>
+  </div>
 
-    <!-- LEFT SIDEBAR MENU -->
-    <div class="col-lg-3 col-md-4 mb-3">
 
-      <div class="list-group shadow-sm">
-        <a class="list-group-item list-group-item-action active">
-          Profile Settings
-        </a>
-        <a class="list-group-item list-group-item-action">
-          Security Settings
-        </a>
-        <a class="list-group-item list-group-item-action">
-          Notifications
-        </a>
-        <a class="list-group-item list-group-item-action">
-          Connected Apps
-        </a>
-      </div>
-
-    </div>
+  <div class="row g-3">
 
     <!-- RIGHT CONTENT -->
-    <div class="col-lg-9 col-md-8">
+    <div class="col-lg col-md-8">
 
       <!-- Profile Settings Card -->
       <div class="card shadow-sm mb-3">
@@ -45,87 +25,59 @@
           <h5 class="mb-1">Profile Settings</h5>
           <p class="text-muted">Upload your photo & personal details here</p>
 
-          <div class="row">
+          <div class="row g-3">
 
             <!-- FORM -->
-            <div class="col-lg-8">
-
+            <div class="col-lg-8 col-md-12">
               <h6 class="mb-3">Personal Information</h6>
 
               <div class="row g-3">
                 <div class="col-md-6">
                   <label class="form-label">First Name</label>
-                  <input class="form-control"
-                   [(ngModel)]="user.firstName"
-                  >
+                  <input class="form-control" [(ngModel)]="user.firstName">
                 </div>
 
                 <div class="col-md-6">
                   <label class="form-label">Last Name</label>
-                  <input class="form-control"
-                   [(ngModel)]="user.lastName"
-                 >
+                  <input class="form-control" [(ngModel)]="user.lastName">
                 </div>
 
                 <div class="col-12">
                   <label class="form-label">Email Address</label>
-                  <input class="form-control"
-                   [(ngModel)]="user.email"
-                   >
+                  <input class="form-control" [(ngModel)]="user.email">
                 </div>
 
                 <div class="col-md-6">
                   <label class="form-label">User Name</label>
-                  <input class="form-control"
-                   [(ngModel)]="user.username"
-                   >
+                  <input class="form-control" [(ngModel)]="user.username">
                 </div>
 
                 <div class="col-md-6">
                   <label class="form-label">Phone Number</label>
-                  <input class="form-control"
-                   [(ngModel)]="user.phone"
-                   >
+                  <input class="form-control" [(ngModel)]="user.phone">
                 </div>
               </div>
-
             </div>
 
             <!-- PROFILE IMAGE -->
-            <div class="col-lg-4 text-center">
+            <div class="col-lg-4 col-md-12 text-center">
+              <h6 class="mb-3">Profile Image</h6>
 
-              <h6 class="mb-3">Personal Information</h6>
+              <div class="d-flex align-items-center mb-4 justify-content-center flex-wrap">
+                <img [src]="imagePreview || user?.profileImage || 'https://via.placeholder.com/80'" 
+                     class="rounded-circle me-3" 
+                     width="80" height="80" alt="Profile"/>
+                <span>Edit Your Photo</span>
+              </div>
 
-              <div class="d-flex align-items-center mb-4">
-        <img 
-          [src]="imagePreview || user?.profileImage || 'https://via.placeholder.com/80'" 
-          class="rounded-circle me-3" 
-          width="80" 
-          height="80"
-          alt="Profile"/>
-          <span> Edit Your Photo</span>
-          
-          
-
-        
-      </div>
-
-      <!-- Upload Box -->
-    <input type="file" #fileInput (change)="onFileSelected($event)" hidden>
-                <div class="border border-2 rounded p-5 text-center"
-                     (click)="fileInput.click()"
-                     style="cursor: pointer;">
-
-        <div class="fs-3 mb-2"><i class="bi bi-cloud-upload fs-3 mb-2"></i></div>
-
-        <div>
-          <span class="text-primary fw-semibold">Click to Upload</span>
-      
-        </div>
-
-        <div class="small mt-1">JPG or PNG</div>
-        <div class="small">(Max 450 x 450 px)</div>
-
+              <!-- Upload Box -->
+              <input type="file" #fileInput (change)="onFileSelected($event)" hidden>
+              <div class="border border-2 rounded p-5 text-center"
+                   (click)="fileInput.click()" style="cursor: pointer;">
+                <div class="fs-3 mb-2"><i class="bi bi-cloud-upload"></i></div>
+                <div><span class="text-primary fw-semibold">Click to Upload</span></div>
+                <div class="small mt-1">JPG or PNG</div>
+                <div class="small">(Max 450 x 450 px)</div>
               </div>
             </div>
 
@@ -135,43 +87,35 @@
 
       <!-- ADDRESS CARD -->
       <div class="card shadow-sm">
-
         <div class="card-body">
-
           <h6 class="mb-3">Address Information</h6>
 
           <div class="mb-3">
             <label class="form-label">Address</label>
-            <input type="text" class="form-control" placeholder="Enter Address"
-            [(ngModel)]="user.address">
+            <input type="text" class="form-control" [(ngModel)]="user.address" placeholder="Enter Address">
           </div>
 
           <div class="row g-3">
             <div class="col-md-6">
               <label class="form-label">Country</label>
-              <input type="text" class="form-control" placeholder="Enter Country"
-              [(ngModel)]="user.country">
+              <input type="text" class="form-control" [(ngModel)]="user.country" placeholder="Enter Country">
             </div>
 
             <div class="col-md-6">
               <label class="form-label">State / Province</label>
-              <input type="text" class="form-control" placeholder="Enter State"
-              [(ngModel)]="user.state">
+              <input type="text" class="form-control" [(ngModel)]="user.state" placeholder="Enter State">
             </div>
 
             <div class="col-md-6">
               <label class="form-label">City</label>
-              <input type="text" class="form-control" placeholder="City"
-              [(ngModel)]="user.city">
+              <input type="text" class="form-control" [(ngModel)]="user.city" placeholder="City">
             </div>
 
             <div class="col-md-6">
               <label class="form-label">Postal Code</label>
-              <input type="text" class="form-control" placeholder="Enter Postal Code"
-              [(ngModel)]="user.postalCode">
+              <input type="text" class="form-control" [(ngModel)]="user.postalCode" placeholder="Enter Postal Code">
             </div>
           </div>
-
         </div>
       </div>
 

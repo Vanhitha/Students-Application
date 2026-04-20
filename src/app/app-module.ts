@@ -19,6 +19,7 @@ import { AdminDashboard } from './admin-dashboard/admin-dashboard';
 import { Myprofile } from './myprofile/myprofile';
 import { ProfileSettings } from './profile-settings/profile-settings';
 import { Settings } from './settings/settings';
+import { Securitysetings } from './securitysetings/securitysetings';
 
 @NgModule({
   declarations: [
@@ -34,6 +35,7 @@ import { Settings } from './settings/settings';
     Myprofile,
     ProfileSettings,
     Settings,
+    Securitysetings,
   ],
   imports: [BrowserModule, AppRoutingModule, FormsModule, ReactiveFormsModule],
   providers: [

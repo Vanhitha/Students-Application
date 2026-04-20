@@ -1,0 +1,23 @@
+.container-fluid {
+  max-width: 100%;
+  overflow-x: hidden;
+}/* Prevent horizontal overflow */
+.container-fluid {
+  overflow-x: hidden;
+}
+
+/* Ensure cards and rows shrink properly */
+.row {
+  margin-right: 0;
+  margin-left: 0;
+}
+
+.card {
+  max-width: 100%;
+  overflow-x: auto;
+}
+
+/* Make form inputs responsive */
+.form-control {
+  max-width: 100%;
+}

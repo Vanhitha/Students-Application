@@ -79,6 +79,15 @@ export class ProfileSettings {
       this.handleFile(file);
     }
   }
+  saveProfile() {
+    alert('Profile saved successfully!');
+  }
+  removeProfile() {
+    alert('Profile removed successfully!');
+  }
+  cancelChanges() {
+    alert('Changes canceled!');
+  }
 
   // ✅ handle image
   handleFile(file: File): void {

@@ -1,0 +1,83 @@
+<!-- Header -->
+<div class="row mb-3">
+  <!-- Left side -->
+  <div class="col-12 col-md-6 mb-2">
+    <h4 class="mb-0">General Settings</h4>
+    <small class="text-muted">Dashboard / Settings / General Settings</small>
+  </div>
+
+
+  <div class="row g-3">
+
+    <!-- RIGHT CONTENT -->
+    <div class="col-lg col-md-8">
+
+      <!-- Profile Settings Card -->
+      <div class="card shadow-sm mb-3">
+        <div class="card-body">
+
+          <h5 class="mb-1">Security Settings</h5>
+          <p class="text-muted">Manage your account security and authentication options</p>
+
+          <div class="row g-3">
+
+           
+             <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; border:1px solid #dee2e6; border-radius:6px; padding:12px; margin-bottom:12px; width:100%; box-sizing:border-box;">
+        <div>
+          <h6 style="margin:0;">Password</h6>
+          <small style="color:#6c757d;">Set a unique password</small>
+        </div>
+        <button style="padding:4px 8px; border:1px solid #0d6efd; background:#fff; color:#0d6efd; border-radius:4px; font-size:12px;" (click)="changePassword()">Change Password</button>
+      </div>
+
+          
+           <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; border:1px solid #dee2e6; border-radius:6px; padding:12px; margin-bottom:12px; width:100%; box-sizing:border-box;">
+        <div>
+          <h6 style="margin:0;">Two Factor</h6>
+          <small style="color:#6c757d;">Enable SMS/email login codes</small>
+        </div>
+        <div class="form-check form-switch">
+              <input class="form-check-input"
+                     type="checkbox"
+                     [(ngModel)]="isTwoFactorEnabled"
+                     (ngModelChange)="toggleTwoFactor()">
+            </div>
+        
+      </div>
+          <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; border:1px solid #dee2e6; border-radius:6px; padding:12px; margin-bottom:12px; width:100%; box-sizing:border-box;">
+        <div>
+          <h6 style="margin:0;">Email Address</h6>
+          <small style="color:#6c757d;">karnativanhitha@gmail.com</small>
+        </div>
+        <div style="display:flex; gap:8px; align-items:center;">
+          <span style="background:#d1e7dd; color:#0f5132; padding:4px 8px; border-radius:4px; font-size:12px;">Verified</span>
+          <button style="padding:4px 8px; border:1px solid #dee2e6; background:#f8f9fa; border-radius:4px; font-size:12px;">Edit</button>
+        </div>
+      </div>
+      <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; border:1px solid #dee2e6; border-radius:6px; padding:12px; margin-bottom:12px; width:100%; box-sizing:border-box;">
+        <h6 style="margin:0;">Device Management</h6>
+        <button style="padding:4px 8px; border:1px solid #0d6efd; background:#fff; color:#0d6efd; border-radius:4px; font-size:12px;">Manage</button>
+      </div>
+      <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; border:1px solid #dee2e6; border-radius:6px; padding:12px; margin-bottom:12px; width:100%; box-sizing:border-box;">
+        <h6 style="margin:0;">Account Activity</h6>
+        <button style="padding:4px 8px; border:1px solid #0d6efd; background:#fff; color:#0d6efd; border-radius:4px; font-size:12px;">View</button>
+      </div>
+        <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; border:1px solid #dee2e6; border-radius:6px; padding:12px; margin-bottom:12px; width:100%; box-sizing:border-box;">
+        <h6 style="margin:0;">Deactivate Account</h6>
+        <button style="padding:4px 8px; border:1px solid #0d6efd; background:#fff; color:#0d6efd; border-radius:4px; font-size:12px;">Deactivate</button>
+      </div>
+
+      
+      <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; border:1px solid #dee2e6; border-radius:6px; padding:12px; margin-bottom:12px; width:100%; box-sizing:border-box;">
+        <h6 style="margin:0;">Delete Account</h6>
+        <button style="padding:4px 8px; border:1px solid #dc3545; background:#fff; color:#dc3545; border-radius:4px; font-size:12px;">Delete</button>
+      </div>
+
+
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
