@@ -8,17 +8,28 @@ import { Validators } from '@angular/forms';
   templateUrl: './add-student.html',
   styleUrl: './add-student.css',
 })
-export class AddStudent {
+export class AddStudent implements OnInit {
    studentForm: FormGroup;
 
-  studentImage: any;
-  filePreview: string | ArrayBuffer | null = null;
+  studentImage: string | null = null;
+  fatherImage: string | null = null;
+  motherImage: string | null = null;
+  guardianImage: string | null = null;
+
+  documentName: string = '';
+  medicalReportName: string = '';
+
+  documentFile: string | null = null;
+  medicalReportFile: string | null = null;
+  medicalCondition: string = 'Good';
+
+allergies: string[] = ['Allergy', 'Skin Allergy'];
+medications: string[] = ['paracetamol', 'ibuprofen'];
+languages: string[] = ['English', 'Hindi', 'Spanish'];
 
   constructor(private fb: FormBuilder) {
 
     this.studentForm = this.fb.group({
-
-     
       academicYear: [''],
       admissionNumber: [''],
       admissionDate: [''],
@@ -30,168 +41,293 @@ export class AddStudent {
       section: [''],
       gender: [''],
       dob: [''],
-      bloodGroup: [''],
-      religion: [''],
-      category: [''],
-      primaryContact: [''],
-      email: [''],
 
-      
       fatherName: [''],
-      fatherEmail: [''],
-      fatherPhone: [''],
-      fatherOccupation: [''],
-
       motherName: [''],
-      motherEmail: [''],
-      motherPhone: [''],
-      motherOccupation: [''],
-
-      
       guardianName: [''],
-      guardianRelation: [''],
-      guardianPhone: [''],
-      guardianEmail: [''],
 
-   
-      sibling: ['No'],
-
-      
       currentAddress: [''],
       permanentAddress: [''],
 
-      
       transportEnabled: [false],
-
-      
       hostelEnabled: [false],
-
-   
-      documents: [''],
-
 
       medicalCondition: ['Good'],
       allergies: [[]],
       medications: [[]],
 
-      
-      previousSchoolName: [''],
-      previousSchoolAddress: [''],
-
-      
-      bankName: [''],
-      branch: [''],
-      ifsc: [''],
-      otherInfo: ['']
+      siblings: this.fb.array([])
     });
   }
 
- 
-  onSubmit() {
-    console.log('Form Data:', this.studentForm.value);
+  ngOnInit(): void {
+    this.loadData();
   }
 
-  
-  resetForm() {
-    this.studentForm.reset();
+  // ---------------- FORM ARRAY ----------------
+
+  get siblings(): FormArray {
+    return this.studentForm.get('siblings') as FormArray;
   }
 
-
-  onStudentImage(event: any) {
-    this.studentImage = event.target.files[0];
+  createSibling(): FormGroup {
+    return this.fb.group({
+      name: [''],
+      rollNo: [''],
+      admissionNo: [''],
+      class: ['']
+    });
   }
 
- 
-selectedFile: File | null = null;
-
-onFileSelected(event: any) {
-  const file = event.target.files[0];
-  if (file) {
-    this.selectedFile = file;
-  }
-}
-onFileSelected1(event: any) {
-  const file = event.target.files[0];
-  if (file) {
-    this.selectedFile = file;
-  }
-}
-onFileSelected2(event: any) {
-  const file = event.target.files[0];
-  if (file) {
-    this.selectedFile = file;
-  }
-}
-onFileSelected3(event: any) {
-  const file = event.target.files[0];
-  if (file) {
-    this.selectedFile = file;
-  }
-}
-
-uploadStudentImage() {
-  if (!this.selectedFile) {
-    console.log('No file selected');
-    return;
+  addSibling() {
+    this.siblings.push(this.createSibling());
+    this.saveData();
   }
 
-  const reader = new FileReader();
+  removeSibling(i: number) {
+    this.siblings.removeAt(i);
+    this.saveData();
+  }
 
-  reader.onload = () => {
-    this.studentImage = reader.result; // this updates preview
+  // ---------------- FILE READER ----------------
+
+  readFile(file: File, callback: Function) {
+    const reader = new FileReader();
+    reader.onload = () => callback(reader.result);
+    reader.readAsDataURL(file);
+  }
+
+  // ---------------- IMAGE UPLOAD ----------------
+
+  onStudentFile(event: any) {
+    const file = event.target.files[0];
+    this.readFile(file, (res: any) => {
+      this.studentImage = res;
+      localStorage.setItem('studentImage', res);
+    });
+  }
+
+  onFatherFile(event: any) {
+    const file = event.target.files[0];
+    this.readFile(file, (res: any) => {
+      this.fatherImage = res;
+      localStorage.setItem('fatherImage', res);
+    });
+  }
+
+  onMotherFile(event: any) {
+    const file = event.target.files[0];
+    this.readFile(file, (res: any) => {
+      this.motherImage = res;
+      localStorage.setItem('motherImage', res);
+    });
+  }
+
+  onGuardianFile(event: any) {
+    const file = event.target.files[0];
+    this.readFile(file, (res: any) => {
+      this.guardianImage = res;
+      localStorage.setItem('guardianImage', res);
+    });
+  }
+  removeStudentImage() {
+    this.studentImage = null;
+    localStorage.removeItem('studentImage');
+  }
+
+  removeFatherImage() {
+    this.fatherImage = null;
+    localStorage.removeItem('fatherImage');
+  }
+
+  removeMotherImage() {
+    this.motherImage = null;
+    localStorage.removeItem('motherImage');
+  }
+
+  removeGuardianImage() {
+    this.guardianImage = null;
+    localStorage.removeItem('guardianImage');
+  }
+  uploadGuardianImage() {
+    const input = document.createElement('input');
+  input.type = 'file';
+  input.accept = 'image/*';
+
+  input.onchange = (event: any) => {
+    const file = event.target.files[0];
+    if (!file) return;
+
+    this.readFile(file, (res: any) => {
+      this.guardianImage = res;
+      localStorage.setItem('guardianImage', res);
+    });
   };
 
-  reader.readAsDataURL(this.selectedFile);
-}
 
-removeStudentImage() {
-  this.studentImage = null;
-  this.selectedFile = null;
-}
+  }
+  uploadStudentImage() {
+    const input = document.createElement('input');
+  input.type = 'file';
+  input.accept = 'image/*';
+
+  input.onchange = (event: any) => {
+    const file = event.target.files[0];
+    if (!file) return;
+
+    this.readFile(file, (res: any) => {
+      this.studentImage = res;
+      localStorage.setItem('studentImage', res);
+    });
+  };
+  }
+  uploadFatherImage() {
+   const input = document.createElement('input');
+  input.type = 'file';
+  input.accept = 'image/*';
+
+  input.onchange = (event: any) => {
+    const file = event.target.files[0];
+    if (!file) return;
+
+    this.readFile(file, (res: any) => {
+      this.fatherImage = res;
+      localStorage.setItem('fatherImage', res);
+    });
+  };
 
   
 
+  }
+  uploadMotherImage() {
+  const input = document.createElement('input');
+  input.type = 'file';
+  input.accept = 'image/*';
+
+  input.onchange = (event: any) => {
+    const file = event.target.files[0];
+    if (!file) return;
+
+    this.readFile(file, (res: any) => {
+      this.motherImage = res;
+      localStorage.setItem('motherImage', res);
+    });
+  };
+
   
-  toggleTransport(event: any) {
-    this.studentForm.patchValue({
-      transportEnabled: event.target.checked
+}
+  
+
+  // ---------------- DOCUMENT UPLOAD ----------------
+
+  onDocumentFile(event: any) {
+    const file = event.target.files[0];
+    if (!file) return;
+
+    this.documentName = file.name;
+
+    this.readFile(file, (res: any) => {
+      this.documentFile = res;
+      localStorage.setItem('documentFile', res);
+      localStorage.setItem('documentName', file.name);
+    });
+  }
+   removeLanguage(lang: string) {
+  this.languages = this.languages.filter(item => item !== lang);
+
+  } 
+  removeAllergy(item: string) {
+  this.allergies = this.allergies.filter(a => a !== item);
+}
+
+removeMedication(item: string) {
+  this.medications = this.medications.filter(m => m !== item);
+}
+
+// ADD (optional input support)
+addAllergy(value: string) {
+  if (value && !this.allergies.includes(value)) {
+    this.allergies.push(value);
+  }
+}
+
+addMedication(value: string) {
+  if (value && !this.medications.includes(value)) {
+    this.medications.push(value);
+  }
+}
+
+  onMedicalReportFile(event: any) {
+    const file = event.target.files[0];
+    if (!file) return;
+
+    this.medicalReportName = file.name;
+
+    this.readFile(file, (res: any) => {
+      this.medicalReportFile = res;
+      localStorage.setItem('medicalReportFile', res);
+      localStorage.setItem('medicalReportName', file.name);
     });
   }
 
-  toggleHostel(event: any) {
-    this.studentForm.patchValue({
-      hostelEnabled: event.target.checked
-    });
+  // ---------------- PICKER BUTTONS ----------------
+
+  openDocumentPicker(input: HTMLInputElement) {
+    input.click();
   }
 
-  
-  addAllergy(item: string) {
-    let list = this.studentForm.value.allergies || [];
-    if (!list.includes(item)) {
-      list.push(item);
-      this.studentForm.patchValue({ allergies: list });
+  openMedicalPicker(input: HTMLInputElement) {
+    input.click();
+  }
+
+  // ---------------- SAVE / LOAD ----------------
+
+  saveData() {
+    const data = this.studentForm.value;
+    data.siblings = this.siblings.value;
+
+    localStorage.setItem('studentForm', JSON.stringify(data));
+  }
+
+  loadData() {
+    const saved = localStorage.getItem('studentForm');
+
+    if (saved) {
+      const data = JSON.parse(saved);
+      this.studentForm.patchValue(data);
+
+      if (data.siblings) {
+        data.siblings.forEach((s: any) => {
+          this.siblings.push(this.fb.group(s));
+        });
+      }
     }
+
+    this.studentImage = localStorage.getItem('studentImage');
+    this.fatherImage = localStorage.getItem('fatherImage');
+    this.motherImage = localStorage.getItem('motherImage');
+    this.guardianImage = localStorage.getItem('guardianImage');
+
+    this.documentName = localStorage.getItem('documentName') || '';
+    this.medicalReportName = localStorage.getItem('medicalReportName') || '';
   }
 
-  addMedication(item: string) {
-    let list = this.studentForm.value.medications || [];
-    if (!list.includes(item)) {
-      list.push(item);
-      this.studentForm.patchValue({ medications: list });
-    }
+  // ---------------- SUBMIT ----------------
+
+  onSubmit() {
+    this.saveData();
+    console.log('Saved:', this.studentForm.value);
   }
 
-  addSiblingRow() {
-    console.log('Add sibling row');
-  }
+  resetForm() {
+    localStorage.clear();
+    this.studentForm.reset();
+    this.siblings.clear();
 
-  removeSiblingRow() {
-    console.log('Remove sibling row');
-  }
-
-  
-  uploadDocument() {
-    console.log('Upload document triggered');
+    this.studentImage = null;
+    this.fatherImage = null;
+    this.motherImage = null;
+    this.guardianImage = null;
   }
 }
 

@@ -21,10 +21,7 @@
 </div>
  
 <div>
-<input type="file"
-       class="form-control mb-2"
-       style="width:100px;"
-       (change)="onFileSelected($event)">
+<input type="file" (change)="onStudentFile($event)">
 <button class="btn btn-primary btn-sm me-2" (click)="uploadStudentImage()">Upload</button>
 <button class="btn btn-primary btn-sm" (click)="removeStudentImage()">Remove</button>
 <div class="text-muted small mt-1">
@@ -136,11 +133,23 @@
  
       <!-- Language Known (Tags UI) -->
 <div class="col-md-3">
-<label class="form-label">Language Known</label>
-<div class="form-control d-flex flex-wrap gap-2">
-<span class="badge bg-secondary">English ✕</span>
-<span class="badge bg-secondary">Spanish ✕</span>
-</div>
+  <label class="form-label">Language Known</label>
+
+  <div class="form-control d-flex flex-wrap gap-2">
+
+    <span class="badge bg-secondary"
+          *ngFor="let lang of languages">
+
+      {{ lang }}
+
+      <i class="bi bi-x"
+         style="cursor:pointer"
+         (click)="removeLanguage(lang)">
+      </i>
+
+    </span>
+
+  </div>
 </div>
  
     </div>
@@ -156,23 +165,25 @@
   <!-- Father Info -->
 <h5 class="mb-3">Father's Info</h5>
  
-  <div class="d-flex align-items-center mb-3 gap-3">
+ <div class="d-flex align-items-center gap-3 mb-4">
+ 
+      <!-- Image Box -->
 <div style="width:100px;height:100px;border:1px dashed #ccc;display:flex;align-items:center;justify-content:center;">
-<img *ngIf="studentImage" [src]="studentImage" alt="Student Image"
+<img *ngIf="fatherImage" [src]="fatherImage" alt="Father Image"
      style="width:100%;height:100%;object-fit:cover;">
-<i *ngIf="!studentImage" class="bi bi-image"></i>
+<i *ngIf="!fatherImage" class="bi bi-image"></i>
 </div>
  
-    <div>
-<input type="file"
-       class="form-control mb-2"
-       style="width:100px;"
-       (change)="onFileSelected1($event)"> 
-<button class="btn btn-primary btn-sm me-2" (click)="uploadStudentImage()">Upload</button>
-<button class="btn btn-primary btn-sm" (click)="removeStudentImage()">Remove</button>
-<div class="text-muted small mt-1">Upload image size 4MB, Format JPG, PNG, SVG</div>
+<div>
+<input type="file" (change)="onFatherFile($event)">
+<button class="btn btn-primary btn-sm me-2" (click)="uploadFatherImage()">Upload</button>
+<button class="btn btn-primary btn-sm" (click)="removeFatherImage()">Remove</button>
+<div class="text-muted small mt-1">
+          Upload image size 4MB, Format JPG, PNG, SVG
 </div>
 </div>
+ 
+    </div>
  
   <div class="row g-3 mb-4">
 <div class="col-md-3"><input class="form-control" placeholder="Father Name"></div>
@@ -184,23 +195,25 @@
   
 <h5 class="mb-3">Mother's Info</h5>
  
-  <div class="d-flex align-items-center mb-3 gap-3">
+  <div class="d-flex align-items-center gap-3 mb-4">
+ 
+      <!-- Image Box -->
 <div style="width:100px;height:100px;border:1px dashed #ccc;display:flex;align-items:center;justify-content:center;">
-<img *ngIf="studentImage" [src]="studentImage" alt="Student Image"
+<img *ngIf="motherImage" [src]="motherImage" alt="Mother Image"
      style="width:100%;height:100%;object-fit:cover;">
-<i *ngIf="!studentImage" class="bi bi-image"></i>
+<i *ngIf="!motherImage" class="bi bi-image"></i>
 </div>
  
-    <div>
-<input type="file"
-       class="form-control mb-2"
-       style="width:100px;"
-       (change)="onFileSelected2($event)">
-<button class="btn btn-primary btn-sm me-2" (click)="uploadStudentImage()">Upload</button>
-<button class="btn btn-primary btn-sm" (click)="removeStudentImage()">Remove</button>
-<div class="text-muted small mt-1">Upload image size 4MB, Format JPG, PNG, SVG</div>
+<div>
+<input type="file" (change)="onMotherFile($event)">
+<button class="btn btn-primary btn-sm me-2" (click)="uploadMotherImage()">Upload</button>
+<button class="btn btn-primary btn-sm" (click)="removeMotherImage()">Remove</button>
+<div class="text-muted small mt-1">
+          Upload image size 4MB, Format JPG, PNG, SVG
 </div>
 </div>
+ 
+    </div>
  
   <div class="row g-3 mb-4">
 <div class="col-md-3"><input class="form-control" placeholder="Mother Name"></div>
@@ -219,24 +232,25 @@
 <input type="radio" name="guardian" class="ms-2"> Others
 </div>
  
-  <div class="d-flex align-items-center mb-3 gap-3">
+  <div class="d-flex align-items-center gap-3 mb-4">
+ 
+      <!-- Image Box -->
 <div style="width:100px;height:100px;border:1px dashed #ccc;display:flex;align-items:center;justify-content:center;">
-<img *ngIf="studentImage" [src]="studentImage" alt="Student Image"
+<img *ngIf="guardianImage" [src]="guardianImage" alt="Guardian Image"
      style="width:100%;height:100%;object-fit:cover;">
-<i *ngIf="!studentImage" class="bi bi-image"></i>
+<i *ngIf="!guardianImage" class="bi bi-image"></i>
 </div>
  
-    <div>
-<input type="file"
-       class="form-control mb-2"
-       style="width:100px;"
-       (change)="onFileSelected3($event)">
-<button class="btn btn-primary btn-sm me-2" (click)="uploadStudentImage()">Upload</button>
-<button class="btn btn-primary btn-sm" (click)="removeStudentImage()">Remove</button>
-<div class="text-muted small mt-1">Upload image size 4MB, Format JPG, PNG, SVG</div>
+<div>
+<input type="file" (change)="onGuardianFile($event)">
+<button class="btn btn-primary btn-sm me-2" (click)="uploadGuardianImage()">Upload</button>
+<button class="btn btn-primary btn-sm" (click)="removeGuardianImage()">Remove</button>
+<div class="text-muted small mt-1">
+          Upload image size 4MB, Format JPG, PNG, SVG
 </div>
 </div>
  
+    </div>
   <div class="row g-3">
 <div class="col-md-3"><input class="form-control" placeholder="Guardian Name"></div>
 <div class="col-md-3"><input class="form-control" placeholder="Guardian Relation"></div>
@@ -261,24 +275,27 @@
 <input type="radio" name="sibling" class="ms-3"> No
 </div>
  
-    <div class="row g-3 mb-3">
-<div class="col-md-3">
-<select class="form-select"><option>Select Name</option></select>
+ <div formArrayName="siblings">
+
+  <div *ngFor="let sib of siblings.controls; let i = index"
+       [formGroupName]="i" class="d-flex align-items-center gap-3 mb-3">
+
+    <input formControlName="name" placeholder="Name">
+    <input formControlName="rollNo" placeholder="Roll No">
+    <input formControlName="admissionNo" placeholder="Admission No">
+    <input formControlName="class" placeholder="Class">
+
+    <button type="button" (click)="removeSibling(i)" style="display: flex; text-align: end;"><i class="bi bi-trash"></i></button>
+
+  </div>
+
 </div>
-<div class="col-md-3">
-<select class="form-select"><option>Roll No</option></select>
-</div>
-<div class="col-md-3">
-<select class="form-select"><option>Admission No</option></select>
-</div>
-<div class="col-md-3 d-flex align-items-center">
-<select class="form-select"><option>Class</option></select>
-<span class="ms-2 text-danger" style="cursor:pointer;"><i class="bi bi-trash"></i></span>
-</div>
-</div>
+
+
+
  
-    <button class="btn btn-primary btn-sm">
-      + Add New
+    <button class="btn btn-primary btn-sm" (click)="addSibling()">
+  + Add New
 </button>
  
   </div>
@@ -309,13 +326,22 @@
  
   <div class="card-body row g-3">
 <div class="col-md-4">
-<select class="form-select"><option>Route</option></select>
+<select class="form-select"><option>Route</option>
+<option> Route 1</option>
+<option> Route 2</option>
+</select>
 </div>
 <div class="col-md-4">
-<select class="form-select"><option>Vehicle Number</option></select>
+<select class="form-select"><option>Vehicle Number</option>
+<option> Vehicle 1</option>
+<option> Vehicle 2</option>
+</select>
 </div>
 <div class="col-md-4">
-<select class="form-select"><option>Pickup Point</option></select>
+<select class="form-select"><option>Pickup Point</option>
+<option> Pickup Point A</option>
+<option> Pickup Point B</option>
+</select>
 </div>
 </div>
 </div>
@@ -329,45 +355,84 @@
  
   <div class="card-body row g-3">
 <div class="col-md-6">
-<select class="form-select"><option>Hostel</option></select>
+<select class="form-select"><option>Hostel</option>
+<option> Hostel A</option>
+<option> Hostel B</option>
+    </select>
 </div>
 <div class="col-md-6">
-<select class="form-select"><option>Room No</option></select>
+<select class="form-select"><option>Room No</option>
+<option> 1</option>
+<option> 2</option>
+<option> 3</option> 
+
+</select>
 </div>
 </div>
 </div>
  
 
 <div class="card mb-4">
-<div class="card-header bg-light fw-semibold">Documents</div>
- 
+  <div class="card-header bg-light fw-semibold">Documents</div>
+
   <div class="card-body row g-4">
- 
-    
-<div class="col-md-6">
-<label class="fw-semibold">Medical Condition</label>
-<div class="small text-muted mb-2">
-        Upload image size of 4MB, Accepted Format PDF
-</div>
- 
-      <div class="d-flex align-items-center gap-2">
-<button class="btn btn-outline-primary btn-sm">Change</button>
-<span class="text-muted small">BirthCertificate.pdf</span>
-</div>
-</div>
- 
-    
-<div class="col-md-6">
-<label class="fw-semibold">Upload Transfer Certificate</label>
-<div class="small text-muted mb-2">
-        Upload image size of 4MB, Accepted Format PDF
-</div>
- 
-      <button class="btn btn-primary btn-sm">
+
+    <!-- MEDICAL REPORT -->
+    <div class="col-md-6">
+      <label class="fw-semibold">Medical Report</label>
+
+      <div class="small text-muted mb-2">
+        Upload PDF / Image (Max 4MB)
+      </div>
+
+      <input type="file"
+             #medicalInput
+             hidden
+             (change)="onMedicalReportFile($event)">
+
+      <button type="button"
+              class="btn btn-success btn-sm"
+              (click)="openMedicalPicker(medicalInput)">
+        Upload Medical Report
+      </button>
+
+      <div class="mt-2" *ngIf="medicalReportName">
+        🏥 {{ medicalReportName }}
+      </div>
+
+      <div *ngIf="medicalReportFile" class="mt-2">
+        <a [href]="medicalReportFile" target="_blank">View File</a>
+      </div>
+    </div>
+
+    <!-- DOCUMENT / TC -->
+    <div class="col-md-6">
+      <label class="fw-semibold">Transfer Certificate / Document</label>
+
+      <div class="small text-muted mb-2">
+        Upload PDF / Image (Max 4MB)
+      </div>
+
+      <input type="file"
+             #docInput
+             hidden
+             (change)="onDocumentFile($event)">
+
+      <button type="button"
+              class="btn btn-primary btn-sm"
+              (click)="openDocumentPicker(docInput)">
         Upload Document
-</button>
-</div>
- 
+      </button>
+
+      <div class="mt-2" *ngIf="documentName">
+        📄 {{ documentName }}
+      </div>
+
+      <div *ngIf="documentFile" class="mt-2">
+        <a [href]="documentFile" target="_blank">View File</a>
+      </div>
+    </div>
+
   </div>
 </div>
    
@@ -400,12 +465,19 @@
 <label class="fw-semibold d-block mb-2">Allergies</label>
  
       <div class="form-control d-flex flex-wrap gap-2">
-<span class="badge bg-secondary">
-          Allergy ✕
-</span>
-<span class="badge bg-secondary">
-          Skin Allergy ✕
-</span>
+<span class="badge bg-secondary"
+          *ngFor="let allergy of allergies">
+
+      {{allergy}}
+
+      <i class="bi bi-x"
+         style="cursor:pointer"
+         (click)="removeAllergy(allergy)">
+      </i>
+
+    </span>
+    
+
 </div>
 </div>
  
@@ -414,9 +486,17 @@
 <label class="fw-semibold d-block mb-2">Medications</label>
  
       <div class="form-control d-flex flex-wrap gap-2">
-<span class="badge bg-secondary">
-          Medicine Name ✕
-</span>
+<span class="badge bg-secondary"
+          *ngFor="let med of medications">
+
+      {{ med }}
+
+      <i class="bi bi-x"
+         style="cursor:pointer"
+         (click)="removeMedication(med)">
+      </i>
+
+    </span>
 </div>
 </div>
  
@@ -477,8 +557,8 @@
  
 
 <div class="d-flex justify-content-end gap-2 mb-4">
-<button class="btn btn-light">Cancel</button>
-<button class="btn btn-primary">Add Student</button>
+<button class="btn btn-light" (click)="resetForm()">Cancel</button>
+<button class="btn btn-primary" (click)="onSubmit()">Add Student</button>
 </div>
     </form>
 </div>
