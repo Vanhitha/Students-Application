@@ -1,47 +1,490 @@
-<div class="container mt-4" >
+<main class="flex-grow-1 bg-light p-4 w-100">
 
-  <h3>Teachers ({{ teachers.length }})</h3>
+  <!-- Header -->
+  <div class="mb-4">
+    <h5 class="fw-bold">Teacher Dashboard</h5>
+    <small class="text-muted">Dashboard / Teacher Dashboard</small>
+  </div>
 
-  <!-- CARDS -->
-  <div class="row">
+  <!-- Welcome Banner -->
+  <div class="card bg-primary text-white border-0 shadow-sm mb-4">
+    <div class="card-body d-flex flex-column flex-md-row justify-content-between align-items-center gap-3">
+      <div>
+        <h4 class="fw-bold mb-1">Good Morning Ms.Teena</h4>
+        <p class="mb-1">Have a Good day at work</p>
+        <small>Notice: Staff meeting at 9AM</small>
+      </div>
+      <img src="https://cdn-icons-png.flaticon.com/512/1995/1995574.png" width="80" class="img-fluid">
+    </div>
+  </div>
 
-    <div class="col-md-4 mb-3" *ngFor="let t of teachers">
+  <!-- Profile + Syllabus -->
+  <div class="row g-4 mb-4">
 
-      <div class="card shadow p-3 w-100 d-flex flex-column" (click)="selectTeacher(t)" style="cursor:pointer;">
-
-        <div class="d-flex align-items-center gap-2">
-
-          <img *ngIf="t.teacherImage"
-               [src]="t.teacherImage"
-               style="width:50px;height:50px;border-radius:50%;object-fit:cover;">
-
-          <div>
-            <h6 class="mb-0">{{ t.firstName }} {{ t.lastName }}</h6>
-            <small>{{ t.subject }}</small>
+    <!-- Profile -->
+    <div class="col-lg-8">
+      <div class="card shadow-sm border-0">
+        <div class="card-body d-flex flex-column flex-md-row justify-content-between align-items-center gap-3">
+          
+          <div class="d-flex align-items-center gap-3">
+            <img [src]="" class="rounded-circle border">
+            <div>
+              <span class="badge bg-secondary">#T594651</span>
+              <h6 class="mb-0 mt-1">Henriques Morgan</h6>
+              <small class="text-muted">Classes: I A, V B - Physics</small>
+            </div>
           </div>
 
+          <button class="btn btn-primary btn-sm">Edit Profile</button>
+
         </div>
-
       </div>
+    </div>
 
+    <!-- Syllabus -->
+    <div class="col-lg-4">
+      <div class="card shadow-sm border-0 text-center h-100">
+        <div class="card-body">
+          <h6>Syllabus</h6>
+          <div class="progress my-3">
+            <div class="progress-bar bg-success" style="width:95%">95%</div>
+          </div>
+          <small class="text-success">Completed: 95%</small><br>
+          <small class="text-danger">Pending: 5%</small>
+        </div>
+      </div>
     </div>
 
   </div>
 
-  <!-- DETAILS CARD -->
-  <div *ngIf="selectedTeacher" class="card mt-4 p-3 shadow">
+  <!-- Today's Class -->
+  <div class="card shadow-sm border-0 mb-4">
+    <div class="card-body">
+      <div class="d-flex justify-content-between mb-3">
+        <h6 class="fw-bold">Today's Class</h6>
+        <small class="text-muted">16 May 2024</small>
+      </div>
 
-    <h4>Teacher Details</h4>
+      <div class="row g-3">
+        <div class="col-6 col-md-3" *ngFor="let cls of classes">
+          <div class="card text-center text-white p-2"
+               [ngClass]="cls.type === 'red' ? 'bg-danger' : 'bg-primary'">
+            <small>{{cls.time}}</small>
+            <div class="fw-semibold">{{cls.name}}</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 
-    <p><b>Name:</b> {{ selectedTeacher.firstName }} {{ selectedTeacher.lastName }}</p>
-    <p><b>Employee ID:</b> {{ selectedTeacher.employeeId }}</p>
-    <p><b>Gender:</b> {{ selectedTeacher.gender }}</p>
-    <p><b>Phone:</b> {{ selectedTeacher.phone }}</p>
-    <p><b>Email:</b> {{ selectedTeacher.email }}</p>
-    <p><b>Subject:</b> {{ selectedTeacher.subject }}</p>
-    <p><b>Experience:</b> {{ selectedTeacher.experience }} years</p>
-    <p><b>Salary:</b> {{ selectedTeacher.salary }}</p>
+  <!-- Bottom Section -->
+  <div class="row g-4">
+
+    <!-- Attendance -->
+    <div class="col-lg-6">
+      <div class="card shadow-sm border-0 h-100">
+        <div class="card-body">
+          <h5 class="card-title">Attendance</h5>
+
+          <div class="d-flex gap-2 mb-3">
+            <span class="badge bg-success-subtle text-success">M</span>
+            <span class="badge bg-success-subtle text-success">T</span>
+            <span class="badge bg-success-subtle text-success">W</span>
+            <span class="badge bg-success-subtle text-success">T</span>
+            <span class="badge bg-danger-subtle text-danger">F</span>
+          </div>
+
+          <div class="row text-center mb-3">
+            <div class="col">
+              <h6>Present</h6>
+              <strong>25</strong>
+            </div>
+            <div class="col">
+              <h6>Absent</h6>
+              <strong>2</strong>
+            </div>
+            <div class="col">
+              <h6>Halfday</h6>
+              <strong>0</strong>
+            </div>
+            <div class="col">
+              <h6>Late</h6>
+              <strong>1</strong>
+            </div>
+          </div>
+
+           <div class="col-md-6 text-center mx-auto ">
+  <div class="d-flex align-items-center justify-content-center">
+    <svg width="300" height="300" viewBox="0 0 42 42" class="rounded-circle">
+      
+      
+      <circle cx="21" cy="21" r="15.915"
+              fill="transparent"
+              stroke="#e9ecef"
+              stroke-width="5"></circle>
+
+      
+      <circle cx="21" cy="21" r="15.915"
+              fill="transparent"
+              stroke="#0d6efd"
+              stroke-width="5"
+              stroke-dasharray="70 30"
+              stroke-dashoffset="0"></circle>
+
+      
+      <circle cx="21" cy="21" r="15.915"
+              fill="transparent"
+              stroke="#ffc107"
+              stroke-width="5"
+              stroke-dasharray="20 80"
+              stroke-dashoffset="-70"></circle>
+
+      
+      <circle cx="21" cy="21" r="15.915"
+              fill="transparent"
+              stroke="#dc3545"
+              stroke-width="5"
+              stroke-dasharray="5 95"
+              stroke-dashoffset="-90"></circle>
+
+    </svg>
+  </div>
+</div>
+
+        </div>
+      </div>
+    </div>
+
+    <!-- Best Performers -->
+    <div class="col-lg-6">
+      <div class="card shadow-sm border-0 ">
+        <div class="card-body">
+          <h5>Best Performers</h5>
+
+          <div class="mb-3">
+            <small>Class IV, C</small>
+            <div class="progress">
+              <div class="progress-bar bg-primary" style="width: 80%">80%</div>
+            </div>
+          </div>
+
+          <div class="mb-3">
+            <small>Class III, B</small>
+            <div class="progress">
+              <div class="progress-bar bg-warning" style="width: 54%">54%</div>
+            </div>
+          </div>
+
+          <div>
+            <small>Class V, A</small>
+            <div class="progress">
+              <div class="progress-bar bg-info" style="width: 70%">70%</div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+              <div class="col-lg">
+      <div class="card shadow-sm border-0 h-100 mt-4">
+        <div class="card-body">
+          <h5>Student Progress</h5>
+
+          <div class="d-flex justify-content-between align-items-center mb-3">
+            <div>
+              <strong>Susan Boswell</strong><br>
+              <small class="text-muted">III, B</small>
+            </div>
+            <span class="badge bg-success">95%</span>
+          </div>
+
+          <div class="d-flex justify-content-between align-items-center mb-3">
+            <div>
+              <strong>Richard Mayes</strong><br>
+              <small class="text-muted">V, A</small>
+            </div>
+            <span class="badge bg-success">90%</span>
+          </div>
+
+          <div class="d-flex justify-content-between align-items-center">
+            <div>
+              <strong>Veronica Randle</strong><br>
+              <small class="text-muted">V, B</small>
+            </div>
+            <span class="badge bg-primary">78%</span>
+          </div>
+
+        </div>
+      </div>
+    </div>
+    </div>
+        <div class="col-md">
+  <div class="card p-3">
+    <div class="container py-4">
+
+      <!-- Header -->
+      <div class="d-flex justify-content-between align-items-center mb-3">
+        <h5 class="mb-0">Schedules</h5>
+        <button class="btn btn-sm text-primary">+ Add New</button>
+      </div>
+
+      <!-- Calendar Card -->
+      <div class="card shadow-sm">
+        <div class="card-body">
+
+          <!-- Month Navigation -->
+          <div class="d-flex justify-content-between align-items-center mb-4">
+            <button (click)="prevMonth()" class="btn btn-sm btn-outline-secondary">&lt;</button>
+
+            <h6 class="mb-0">
+              {{ currentDate | date: 'MMMM yyyy' }}
+            </h6>
+
+            <button (click)="nextMonth()" class="btn btn-sm btn-outline-secondary">&gt;</button>
+          </div>
+
+          <!-- Calendar Grid -->
+          <div class="calendar-grid text-center">
+
+            <!-- Day Names -->
+            <div class="day-name" *ngFor="let d of ['Su','Mo','Tu','We','Th','Fr','Sa']" style="display: inline-block; width: 14.285714285714286%;">
+              {{ d }}
+            </div>
+
+            <!-- Dates -->
+            <div class="day-cell" *ngFor="let day of days" style="display: inline-block; width: 14.285714285714286%; padding: 5px;">
+              
+              <button
+                *ngIf="!day.inactive && day.date"
+                class="btn btn-sm w-100 h-100"
+                [ngClass]="{'btn-primary': day.date === 7}"
+              >
+                {{ day.date }}
+              </button>
+
+              <span *ngIf="day.inactive || !day.date" class="text-muted" >
+                {{ day.date }}
+              </span>
+
+            </div>
+
+          </div>
+
+        </div>
+      </div>
+
+
+    </div>
+      <div class="card mb-4 p-3">
+    <h5 class="mb-3">Upcoming Events</h5>
+
+    <div class="list-group">
+      <div class="list-group-item d-flex justify-content-between align-items-center">
+        <div>
+          <strong>Vacation Meeting</strong><br>
+          <small>07 July 2024</small>
+        </div>
+        <span class="text-muted">09:00 AM - 10:30 PM</span>
+      </div>
+
+      <div class="list-group-item d-flex justify-content-between align-items-center">
+        <div>
+          <strong>Parents, Teacher Meet</strong><br>
+          <small>15 July 2024</small>
+        </div>
+        <span class="text-muted">09:00 AM - 10:30 PM</span>
+      </div>
+
+      <div class="list-group-item d-flex justify-content-between align-items-center">
+        <div>
+          <strong>Staff Meeting</strong><br>
+          <small>10 July 2024</small>
+        </div>
+        <span class="text-muted">09:00 AM - 10:30 PM</span>
+      </div>
+    </div>
+  </div>
+  </div>
+  
+</div>
 
   </div>
 
+<div class="container my-4">
+
+
+  <!-- Lesson Plans -->
+  <div class="card mb-4 p-3">
+    <div class="d-flex justify-content-between mb-3">
+      <h5>Syllabus / Lesson Plan</h5>
+      <a href="#" class="text-primary">View All</a>
+    </div>
+
+    <div class="row gap-2">
+      <div class="col-md card shadow-sm border-1">
+        <div class="lesson-card lesson-green">
+          <h6 style="background-color: rgb(238, 246, 238); color: green; text-align: center; padding: 10px; padding-top: 35px;">Class V B</h6>
+          <p>Introduction Note to Physics</p>
+          <div class="progress my-3 h-1">
+            <div class="progress-bar bg-success" style="width: 75%"></div>
+          </div>
+          <div class="text-muted" style="display: flex; justify-content:center ;gap: 100px; padding-top: 22px;">
+            <small ><i class="bi bi-pencil-square"></i>ReSchedule </small>
+            <small ><i class="bi bi-share"></i>Share</small>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md card shadow-sm border-1">
+        <div class="lesson-card lesson-yellow">
+          <h6 style="background-color:rgb(255, 243, 221); color:orange; text-align: center; padding: 10px; padding-top: 35px;">Class V A</h6>
+          <p>Biometrics & their Working</p>
+          <div class="progress my-3 h-1">
+            <div class="progress-bar bg-warning" style="width:75%"></div>
+          </div>
+          <div class="text-muted" style="display: flex; justify-content:center ;gap: 100px; padding-top: 22px;">
+            <small ><i class="bi bi-pencil-square"></i>ReSchedule </small>
+            <small ><i class="bi bi-share"></i>Share</small>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md card shadow-sm border-1">
+        <div class="lesson-card lesson-blue">
+          <h6 style="background-color:rgb(221, 243, 255); color:blue; text-align: center;padding: 10px; padding-top: 35px;">Class VI C</h6>
+          <p>Analyze and interpret literary texts</p>
+            <div class="progress my-3 h-1">
+            <div class="progress-bar bg-primary" style="width:75%"></div>
+          </div>
+          <div class="text-muted" style="display: flex; justify-content:center ;gap: 100px; padding-top: 22px;">
+            <small ><i class="bi bi-pencil-square"></i>ReSchedule </small>
+            <small ><i class="bi bi-share"></i>Share</small>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md card shadow-sm border-1">
+        <div class="lesson-card lesson-pink">
+          <h6 style="background-color: rgb(249, 217, 228); color:palevioletred; text-align: center; padding: 10px;">Class V A</h6>
+          <p>Enhance vocabulary and grammar skills</p>
+          <div class="progress my-3 h-1">
+            <div class="progress-bar bg-danger-subtle" style="width:45%"></div>
+          </div>
+          <div class="text-muted" style="display: flex; justify-content:center ;gap: 100px; padding-top: 22px;">
+            <small ><i class="bi bi-pencil-square"></i>ReSchedule </small>
+            <small ><i class="bi bi-share"></i>Share</small>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <!-- Student Marks -->
+    <div class="col-md">
+      <div class="card p-3">
+        <h5 class="mb-2">Student Marks</h5>
+
+        <table class="table align-middle">
+          <thead>
+            <tr>
+              <th>Name</th>
+              <th>Class</th>
+              <th>Marks %</th>
+              <th>CGPA</th>
+              <th>Status</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Janet</td>
+              <td>III</td>
+              <td>89%</td>
+              <td>4.2</td>
+              <td><span class="badge bg-success badge-status">Pass</span></td>
+            </tr>
+            <tr>
+              <td>Joan</td>
+              <td>IV</td>
+              <td>88%</td>
+              <td>3.2</td>
+              <td><span class="badge bg-success badge-status">Pass</span></td>
+            </tr>
+            <tr>
+              <td>Kathleen</td>
+              <td>II</td>
+              <td>89%</td>
+              <td>4.5</td>
+              <td><span class="badge bg-success badge-status">Pass</span></td>
+            </tr>
+            <tr>
+              <td>Alfred</td>
+              <td>II</td>
+              <td>21%</td>
+              <td>1.5</td>
+              <td><span class="badge bg-danger badge-status">Fail</span></td>
+            </tr>
+            <tr>
+              <td>Lisa</td>
+              <td>I</td>
+              <td>31%</td>
+              <td>1.9</td>
+              <td><span class="badge bg-danger badge-status">Fail</span></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- Leave Status -->
+    <div class="col-md-4 col-lg-4">
+      <div class="card p-3">
+        <h5 class="mb-4">Leave Status</h5>
+
+        <div class="mb-3" style="display: flex; justify-content: space-between;">
+          <div class="" style="display: flex; flex-direction: column;">
+          <strong>Emergency Leave</strong>
+          <small>Date: 15 Jan 2024</small>
+          </div>
+           <div class="mb-3">
+          <span class="badge bg-primary">Pending</span>
+        </div>
+        </div>
+
+       <div class="mb-3" style="display: flex; justify-content: space-between;">
+          <div class="" style="display: flex; flex-direction: column;">
+          <strong>Medical Leave</strong>
+          <small>Date: 15 Jan 2024</small>
+          </div>
+           <div class="mb-3">
+          <span class="badge bg-success">Approved</span>
+        </div>
+        </div>
+
+       <div class="mb-3" style="display: flex; justify-content: space-between;">
+          <div class="" style="display: flex; flex-direction: column;">
+          <strong> Medical Leave</strong>
+          <small>Date: 15 Jan 2024</small>
+          </div>
+           <div class="mb-3">
+          <span class="badge bg-danger">Rejected</span>
+        </div>
+        </div>
+
+        <div class="mb-3" style="display: flex; justify-content: space-between;">
+          <div class="" style="display: flex; flex-direction: column;">
+          <strong>Not Well</strong>
+          <small>Date: 16 Jan 2024</small>
+          </div>
+           <div class="mb-3">
+          <span class="badge bg-success">Approved</span>
+        </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
 </div>
+
+</main>
