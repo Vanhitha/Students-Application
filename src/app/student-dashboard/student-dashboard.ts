@@ -76,7 +76,7 @@ homeworks = [
       student: 'Aaron',
       date: '16 Jun 2024',
       progress: 90,
-      image: 'https://via.placeholder.com/50',
+      image: 'https://images.unsplash.com/photo-1633493702341-4d04841df53b?q=80&w=880&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
       badgeColor: 'bg-primary',
       progressColor: 'green'
     },
@@ -86,7 +86,7 @@ homeworks = [
       student: 'Helliana',
       date: '16 Jun 2024',
       progress: 65,
-      image: 'https://via.placeholder.com/50',
+      image: 'https://images.unsplash.com/photo-1725404343886-a111bc5555c1?q=80&w=1088&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
       badgeColor: 'bg-success',
       progressColor: 'blue'
     },
@@ -96,7 +96,7 @@ homeworks = [
       student: 'Morgan',
       date: '21 Jun 2024',
       progress: 30,
-      image: 'https://via.placeholder.com/50',
+      image: 'https://images.unsplash.com/photo-1632571401005-458e9d244591?q=80&w=1171&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
       badgeColor: 'bg-danger',
       progressColor: 'orange'
     },
@@ -106,7 +106,7 @@ homeworks = [
       student: 'Daniel Josua',
       date: '21 Jun 2024',
       progress: 10,
-      image: 'https://via.placeholder.com/50',
+      image: 'https://images.unsplash.com/photo-1700773428278-13f13630d18d?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
       badgeColor: 'bg-info',
       progressColor: 'red'
     }
