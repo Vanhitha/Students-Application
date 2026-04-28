@@ -1,5 +1,5 @@
 import { AfterViewInit, Component, OnInit } from '@angular/core';
-import { Student } from '../student';
+import { Student } from '../../student';
 import{ Chart } from 'chart.js/auto';
 interface Day {
   date: number | null;

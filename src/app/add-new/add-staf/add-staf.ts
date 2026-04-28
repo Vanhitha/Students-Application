@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { FormBuilder, Validators } from '@angular/forms';
-import { Student } from '../student';
+import { Student } from '../../student';
 @Component({
   selector: 'app-add-staf',
   standalone: false,

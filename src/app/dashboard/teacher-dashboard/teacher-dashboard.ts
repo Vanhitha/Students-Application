@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Teacher, TeacherService } from '../teacher';
+import { Teacher, TeacherService } from '../../teacher';
 interface Day {
   date: number | null;
   inactive: boolean;

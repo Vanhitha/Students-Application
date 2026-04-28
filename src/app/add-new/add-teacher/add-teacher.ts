@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { FormGroup, Validators } from '@angular/forms';
 import { FormBuilder } from '@angular/forms';
-import {  Teacher, TeacherService } from '../teacher';
+import {  Teacher, TeacherService } from '../../teacher';
 
 @Component({
   selector: 'app-add-teacher',

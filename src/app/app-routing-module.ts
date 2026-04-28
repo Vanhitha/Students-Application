@@ -7,18 +7,19 @@ import { Pagemnotfound } from './pagemnotfound/pagemnotfound';
 import { register } from 'module';
 import path from 'path';
 import { Home } from './home/home';
-import { AdminDashboard } from './admin-dashboard/admin-dashboard';
+import { AdminDashboard } from './dashboard/admin-dashboard/admin-dashboard';
 import { Myprofile } from './myprofile/myprofile';
 import { ProfileSettings } from './profile-settings/profile-settings';
 import { Settings } from './settings/settings';
 import { Notifications } from './notifications/notifications';
 import { Securitysetings } from './securitysetings/securitysetings';
-import { AddStudent } from './add-student/add-student';
-import { AddTeacher } from './add-teacher/add-teacher';
-import { StudentDashboard } from './student-dashboard/student-dashboard';
-import { AddStaf } from './add-staf/add-staf';
-import { TeacherDashboard } from './teacher-dashboard/teacher-dashboard';
+import { AddStudent } from './add-new/add-student/add-student';
+import { AddTeacher } from './add-new/add-teacher/add-teacher';
+import { StudentDashboard } from './dashboard/student-dashboard/student-dashboard';
+import { AddStaf } from './add-new/add-staf/add-staf';
+import { TeacherDashboard } from './dashboard/teacher-dashboard/teacher-dashboard';
 import { ParentDashboard } from './parent-dashboard/parent-dashboard';
+import { DashboardModule } from './dashboard/dashboard-module';
 
 const routes: Routes = [
   {path:"",component:Login},
@@ -26,14 +27,18 @@ const routes: Routes = [
   {path:"forgotpassword", component: ForgotPassword},
   {path:"login",component:Login},
  
+ 
   {path:"home",component:Home ,children: [
-      { path: 'admindashboard', component: AdminDashboard },
-      {path:"teacherdashboard",component:TeacherDashboard},
-      { path: 'studentdashboard', component: StudentDashboard },
-      {path :"parentdashboard",component:ParentDashboard},
-      {path:"add-student",component:AddStudent},
-      {path:"add-teacher",component:AddTeacher},
-      {path:"add-staf",component:AddStaf},
+    { path:"dashboard",
+      loadChildren:()=>
+        import('./dashboard/dashboard-module').then((m)=>m.DashboardModule)
+    },
+     {
+      path:"add-new",
+      loadChildren:()=>
+        import('./add-new/add-new-module').then((m)=>m.AddNewModule)
+    },
+    
        {path:"myprofile",component:Myprofile},
        {path:"settings",component:Settings,children:[
          {path:"profile-settings",component:ProfileSettings},
