@@ -14,20 +14,6 @@ Make sure you have the following installed:
 * npm (comes with Node.js)
 * Angular CLI
 
-Install Angular CLI globally:
-
-```bash
-npm install -g @angular/cli
-```
-
-Check versions:
-
-```bash
-node -v
-npm -v
-ng version
-```
-
 ---
 
 ## 📥 Clone the Repository
