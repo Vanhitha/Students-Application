@@ -1,5 +1,6 @@
 import { Component, EventEmitter, Output } from '@angular/core';
-import { UserService } from '../user-service';
+import { UserService } from '../user-service'
+import { Renderer2 } from '@angular/core';
 
 @Component({
   selector: 'app-header',
@@ -10,12 +11,15 @@ import { UserService } from '../user-service';
 export class Header {
   user: any;
 
-  constructor(private userService: UserService) {}
+  constructor(private userService: UserService,private renderer: Renderer2) {}
 
   ngOnInit(): void {
     this.userService.user$.subscribe((user: any) => {
       this.user = user;
     });
+    const savedTheme = localStorage.getItem('theme');
+    this.isDarkMode = savedTheme === 'dark';
+    this.applyTheme();
   }
 
   isMenuOpen = false;
@@ -29,4 +33,17 @@ export class Header {
     /* 🔥 SEND STATE TO HOME */
     this.menuToggle.emit(this.isMenuOpen);
   }
+     isDarkMode = false;
+
+  toggleTheme() {
+    this.isDarkMode = !this.isDarkMode;
+    this.applyTheme();
+
+    localStorage.setItem('theme', this.isDarkMode ? 'dark' : 'light');
+  }
+
+  applyTheme() {
+  const theme = this.isDarkMode ? 'dark' : 'light';
+  document.documentElement.setAttribute('data-bs-theme', theme);
+}
 }

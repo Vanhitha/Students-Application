@@ -1,4 +1,4 @@
- <main class="flex-grow-1 main-content">
+ <!-- <main class="flex-grow-1 main-content">
       
       <div class="d-flex justify-content-between align-items-center pt-3 pb-2 mb-3 border-bottom">
         <h4>Admin Dashboard</h4>
@@ -134,17 +134,17 @@
   <div class="card p-3">
     <div class="container py-4">
 
-      <!-- Header -->
+      <!-- Header -
       <div class="d-flex justify-content-between align-items-center mb-3">
         <h5 class="mb-0">Schedules</h5>
         <button class="btn btn-sm text-primary">+ Add New</button>
       </div>
 
-      <!-- Calendar Card -->
+      <!-- Calendar Card --
       <div class="card shadow-sm">
         <div class="card-body">
 
-          <!-- Month Navigation -->
+          <!-- Month Navigation --
           <div class="d-flex justify-content-between align-items-center mb-4">
             <button (click)="prevMonth()" class="btn btn-sm btn-outline-secondary">&lt;</button>
 
@@ -155,15 +155,15 @@
             <button (click)="nextMonth()" class="btn btn-sm btn-outline-secondary">&gt;</button>
           </div>
 
-          <!-- Calendar Grid -->
+          <!-- Calendar Grid --
           <div class="calendar-grid text-center">
 
-            <!-- Day Names -->
+            <!-- Day Names --
             <div class="day-name" *ngFor="let d of ['Su','Mo','Tu','We','Th','Fr','Sa']" style="display: inline-block; width: 14.285714285714286%;">
               {{ d }}
             </div>
 
-            <!-- Dates -->
+            <!-- Dates --
             <div class="day-cell" *ngFor="let day of days" style="display: inline-block; width: 14.285714285714286%; padding: 5px;">
               
               <button
@@ -185,16 +185,16 @@
         </div>
       </div>
 
-      <!-- Upcoming Events -->
+      <!-- Upcoming Events --
       <div class="card shadow-sm border-0 rounded-4 p-3 mt-4">
         <h5 class="mb-3 fw-bold">Upcoming Events</h5>
 
         <div *ngFor="let event of events" class="event-item d-flex mb-3">
 
-          <!-- Left color line -->
+          <!-- Left color line --
           <div class="event-line me-3" [ngClass]="event.color"></div>
 
-          <!-- Content -->
+          <!-- Content --
           <div class="flex-grow-1">
 
             <div class="d-flex justify-content-between align-items-start">
@@ -215,7 +215,7 @@
 
               </div>
 
-              <!-- Users -->
+              <!-- Users --
               <div class="avatar-group">
                 <img *ngFor="let img of event.users"
                      [src]="img"
@@ -343,7 +343,7 @@
   </div>
   
 </div>
-<div class=" card container mt-4 shadow-sm p-3 mb-5 bg-white rounded-4">
+<div class=" card container mt-4 shadow-sm p-3 mb-5  rounded-4">
   <h5 class="fw-bold mb-3">Quick Links</h5>
 <hr>
   <div class="row g-3">
@@ -621,7 +621,7 @@
         <div class="card-body">
           <h6>Total Expenses</h6>
           <h4>$60,522.24</h4>
-          <!-- <i class="add"></i> -->
+          <!-- <i class="add"></i> --
 
           
           <canvas #expensesChart style="height: 92px;"></canvas>
@@ -679,7 +679,7 @@
 </div>
 <div class="container-fluid p-3">
 
-  <!-- Notice Board -->
+  <!-- Notice Board --
   <div class="card mb-3">
     <div class="card-header d-flex justify-content-between">
       <strong>Notice Board</strong>
@@ -704,10 +704,9 @@
     </div>
   </div>
 
-  <!-- Middle Section -->
+  <!-- Middle Section --
   <div class="row g-3">
-
-    <!-- Top Subjects -->
+\
     <div class="col-md-6">
       <div class="card h-100">
         <div class="card-header d-flex justify-content-between">
@@ -737,7 +736,7 @@
       </div>
     </div>
 
-    <!-- Student Activity -->
+    <!-- Student Activity --
     <div class="col-md-6">
       <div class="card h-100">
         <div class="card-header d-flex justify-content-between">
@@ -761,7 +760,7 @@
 
   </div>
 
-  <!-- Todo -->
+  <!-- Todo --
   <div class="card mt-3">
     <div class="card-header d-flex justify-content-between">
       <strong>Todo</strong>
@@ -792,4 +791,159 @@
 
 </div>
 
- </main>
+ </main> -->
+<div class="header">
+  <h2> Admin Dashboard</h2>
+  <button *ngIf="view !== 'classes'" (click)="goBack()">⬅ Back</button>
+</div>
+
+<!-- CLASSES -->
+<div *ngIf="view === 'classes'" class="level">
+  <h3>Select Class</h3>
+  <div class="grid">
+    <div class="card" *ngFor="let c of classes" (click)="selectClass(c)">
+      {{c.name}}
+    </div>
+  </div>
+</div>
+
+<!-- SECTIONS -->
+<div *ngIf="view === 'sections'" class="level">
+  <h3>Sections - {{selectedClass?.name}}</h3>
+  <div class="grid">
+    <div class="card" *ngFor="let s of sections" (click)="selectSection(s)">
+      Section {{s.name}}
+    </div>
+  </div>
+</div>
+
+<!-- STUDENTS -->
+<div *ngIf="view === 'students'" class="level">
+  <h3>Students</h3>
+  <div class="grid">
+    <div class="card" *ngFor="let st of students" (click)="selectStudent(st)">
+      <img [src]="st.image" />
+      <p>{{st.name}}</p>
+    </div>
+  </div>
+</div>
+
+<!-- STUDENT DETAILS -->
+<div *ngIf="view === 'details'" class="details">
+
+  <!-- PROFILE -->
+  <div class="profile">
+    <img [src]="student.image" class="profile-img" />
+    <div>
+      <h2>{{student.name}}</h2>
+      <p>Joined: {{student.joinDate}}</p>
+      <p>Class: {{student.joinClass}}</p>
+    </div>
+  </div>
+
+  <!-- STATS -->
+  <div class="stats">
+
+  <!-- PRESENT -->
+  <div class="stat-card present">
+    <p>Present</p>
+    <h2>{{student.present}}</h2>
+    <div class="graph">
+      <span><svg viewBox="0 0 100 30" preserveAspectRatio="none">
+   <path d="M0 20 L15 15 L30 18 L45 10 L60 14 L75 6 L90 10 L100 30 L0 30 Z"
+      class="line"/>
+  </svg></span>
+    </div>
+  </div>
+
+  <!-- ABSENT -->
+  <div class="stat-card absent">
+    <p>Absent</p>
+    <h2>{{student.absent}}</h2>
+    <div class="graph">
+      <span><svg viewBox="0 0 100 30" preserveAspectRatio="none">
+  <path d="M0 20 L15 15 L30 18 L45 10 L60 14 L75 6 L90 10 L100 30 L0 30 Z"
+      class="line"/>
+  </svg></span>
+    </div>
+  </div>
+
+  <!-- TOTAL -->
+  <div class="stat-card total">
+    <p>Total</p>
+    <h2>{{student.total}}</h2>
+    <div class="graph">
+      <span><svg viewBox="0 0 100 30" preserveAspectRatio="none">
+    <path d="M0 20 L15 15 L30 18 L45 10 L60 14 L75 6 L90 10 L100 30 L0 30 Z"
+      class="line"/>
+  </svg></span>
+    </div>
+  </div>
+
+</div>
+  <div class="grid">
+
+    <!-- PERFORMANCE -->
+    <div class="box">
+      <h3>📊 Academic Performance</h3>
+
+      <!-- <canvas baseChart
+        [datasets]="performanceData"
+        [labels]="performanceLabels"
+        [options]="chartOptions"
+        [type]="'line'">
+      </canvas> -->
+
+      <div class="summary">
+        <p><strong>Average:</strong> 74%</p>
+        <p><strong>Highest:</strong> 85%</p>
+        <p><strong>Trend:</strong> Improving 📈</p>
+      </div>
+    </div>
+
+    <!-- FEES -->
+    <div class="box">
+      <h3>💰 Fees</h3>
+      <p>{{student.fees}}</p>
+    </div>
+
+    <!-- STATUS -->
+    <div class="box">
+      <h3>🏠 Status</h3>
+      <p>{{student.hostel}}</p>
+    </div>
+
+    <!-- STRENGTH -->
+    <div class="box">
+      <h3>⭐ Strengths</h3>
+      <p>{{student.strengths}}</p>
+    </div>
+
+    <!-- IMPROVEMENTS -->
+    <div class="box">
+      <h3>⚠ Improvements</h3>
+      <p>{{student.improvements}}</p>
+    </div>
+
+    <!-- PARENT -->
+    <div class="box">
+      <h3>👨‍👩‍👧 Parent</h3>
+      <p>{{student.parent}}</p>
+    </div>
+
+    <!-- EXTRA -->
+    <div class="box">
+      <h3>📘 Academic Insights</h3>
+      <p><strong>Best Subject:</strong> Math</p>
+      <p><strong>Needs Focus:</strong> English</p>
+      <p><strong>Remark:</strong> Good improvement</p>
+    </div>
+
+    <div class="box">
+      <h3>📅 Attendance Insights</h3>
+      <p><strong>Attendance:</strong> 90%</p>
+      <p><strong>Longest Streak:</strong> 45 days</p>
+    </div>
+
+  </div>
+</div>

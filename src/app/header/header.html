@@ -99,7 +99,9 @@
         </div>
 
         <!-- OTHER ICONS -->
-        <button class="btn btn-light border"><i class="bi bi-moon"></i></button>
+      <button class="btn btn-light border" (click)="toggleTheme()">
+  <i class="bi" [ngClass]="isDarkMode ? 'bi-sun' : 'bi-moon'"></i>
+</button>
         <button class="btn btn-light border"><i class="bi bi-bell"></i></button>
         <button class="btn btn-light border"><i class="bi bi-chat-dots"></i></button>
         <button class="btn btn-light border"><i class="bi bi-bar-chart"></i></button>

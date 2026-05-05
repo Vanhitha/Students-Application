@@ -11,7 +11,7 @@
 }
 
 
-.header-menu {
+/* .header-menu {
   position: absolute;
   top: 56px;
   right: 10px;
@@ -21,19 +21,58 @@
   box-shadow: 0 6px 18px rgba(0,0,0,0.12);
   z-index: 1050;
 
-  /* hidden state */
+  /* hidden state 
   opacity: 0;
   transform: translateY(-15px);
   pointer-events: none;
 
-  /* IMPORTANT: transform + opacity transition */
+  /* IMPORTANT: transform + opacity transition 
   transition: transform 0.3s ease, opacity 0.3s ease;
 }
 
-/* open state */
+/* open state 
 .header-menu.open {
   opacity: 1;
   transform: translateY(0);
+  pointer-events: auto;
+} */
+
+.header-menu {
+  position: fixed;
+  top: 58px;
+  right: 10px;
+
+  width: 314px;
+
+  background: #fff;
+  padding: 12px;
+  border-radius: 10px;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.12);
+
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+
+  /* hidden state */
+  opacity: 0;
+  transform: translateY(-10px) scale(0.8); /* 👈 use scale (not only scaleY) */
+  transform-origin: center;
+
+  visibility: hidden;  /* 👈 important for smooth closing */
+  pointer-events: none;
+
+  transition: 
+    transform 01s ease,
+    opacity 1s ease,
+    visibility 1s ease;
+}
+
+/* OPEN STATE */
+.header-menu.open {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+
+  visibility: visible;
   pointer-events: auto;
 }
 
@@ -109,4 +148,19 @@
 .dropdown-menu.show {
   opacity: 1;
   transform: translateY(0);
+}
+body.dark-mode {
+  background-color: #121212 !important;
+  color: #ffffff !important;
+}
+
+/* Force everything inside */
+body.dark-mode * {
+  color: #ffffff !important;
+}
+
+/* Bootstrap override */
+body.dark-mode .btn {
+  background-color: #333 !important;
+  color: #fff !important;
 }

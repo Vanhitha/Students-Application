@@ -1,3 +1,285 @@
-canvas {
-  width: 100% !important;
+/* ================= GLOBAL ================= */
+body {
+  margin: 0;
+  font-family: 'Segoe UI', sans-serif;
+  background: #f4f6f9;
+  color: #333;
+}
+
+/* ================= HEADER ================= */
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #fff;
+  padding: 15px 25px;
+  border-bottom: 1px solid #eee;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+}
+
+.header h2 {
+  margin: 0;
+  font-size: 20px;
+}
+
+.header button {
+  background: #4a6cf7;
+  color: white;
+  border: none;
+  padding: 6px 14px;
+  border-radius: 20px;
+  cursor: pointer;
+}
+
+/* ================= LEVEL TITLES ================= */
+.level h3 {
+  margin: 20px;
+  font-weight: 600;
+}
+
+/* ================= GRID (ROW STYLE LIKE UI) ================= */
+.grid {
+  display: grid;
+  gap: 20px;
+  padding: 20px;
+  grid-template-columns: repeat(4, 1fr);
+}
+
+/* Tablet */
+@media (max-width: 992px) {
+  .grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* Mobile */
+@media (max-width: 576px) {
+  .grid {
+    grid-template-columns: repeat(1, 1fr);
+  }
+}
+
+/* ================= CARDS ================= */
+.card {
+  min-width: 180px;
+  flex: 0 0 auto;
+  padding: 20px;
+  text-align: center;
+  border-radius: 12px;
+  background: #fff;
+  cursor: pointer;
+  transition: 0.3s;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+}
+
+.card:hover {
+  transform: translateY(-6px);
+  background: #4a6cf7;
+  color: white;
+}
+
+.card img {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  margin-bottom: 10px;
+}
+
+/* ================= PROFILE ================= */
+.profile {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  margin: 20px;
+ color: whitesmoke;
+  padding: 20px;
+  border-radius: 14px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+ background: linear-gradient(
+    to bottom,
+    #000000 0%,
+    #1a1a1a 40%,
+    #333333 60%,
+    #4d4d4d 100%
+  );
+}
+
+.profile-img {
+  width: 90px;
+  height: 90px;
+  border-radius: 50%;
+  border: 3px solid #4a6cf7;
+}
+
+/* ================= STATS ================= */
+.graph {
+  width: 100%;
+  height: 40px;
+}
+
+.graph svg {
+  width: 100%;
+  height: 100%;
+}
+
+.graph .line {
+  stroke-width: 0.5;
+  fill-opacity: 0.2;   /* light fill */
+
+}
+
+/* Different colors for each card */
+.present .line {
+ stroke: #00b894;
+  fill: #00b894;
+}
+
+.absent .line {
+  stroke: #ff5252;
+  fill:#ff5252
+}
+
+.total .line {
+  stroke: #4c6ef5;
+  fill: #4c6ef5;
+}
+.stats {
+  display: flex;
+  gap: 20px;
+  margin: 20px;
+}
+
+/* CARD STYLE */
+.stat-card {
+  flex: 1;
+  /* padding: 20px; */
+  border-radius: 14px;
+  position: relative;
+  overflow: hidden;
+  background: #fdf6e3;
+  box-shadow: 0 6px 15px rgba(0,0,0,0.08);
+  transition: 0.3s;
+}
+
+.stat-card:hover {
+  transform: translateY(-5px);
+}
+
+/* TEXT */
+.stat-card p {
+  margin: 0;
+  font-size: 14px;
+  color: #666;
+}
+
+.stat-card h2 {
+  margin: 5px 0 15px;
+  color: #e6a700;
+
+}
+
+/* GRAPH LINE */
+.graph {
+  height: 40px;
+  position: relative;
+}
+
+/* .graph span {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border-bottom: 2px solid #e6a700;
+  border-left: 2px solid transparent;
+  transform: skewY(-10deg);
+  animation: wave 2s infinite ease-in-out alternate;
+} */
+
+/* ANIMATION */
+@keyframes wave {
+  0% {
+    transform: skewY(-5deg);
+  }
+  100% {
+    transform: skewY(-15deg);
+  }
+}
+
+/* COLORS VARIANTS */
+.present {
+  background: #e6fff4;
+}
+.present h2 {
+  color: #00c897;
+}
+/* .present .graph span {
+  border-bottom: 2px solid #00c897;
+} */
+
+.absent {
+  background: #ffecec;
+}
+.absent h2 {
+  color: #ff5c5c;
+  display: flex;
+
+}
+/* .absent .graph span {
+  border-bottom: 2px solid #ff5c5c;
+} */
+
+.total {
+  background: #eef2ff;
+}
+.total h2 {
+  color: #4a6cf7;
+}
+/* .total .graph span {
+  border-bottom: 2px solid #4a6cf7;
+} */
+/* ================= DETAILS GRID ================= */
+.details .grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  overflow: visible;
+}
+
+/* ================= BOX ================= */
+.box {
+  background: #fff;
+  padding: 20px;
+  border-radius: 14px;
+  transition: 0.3s;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+}
+
+.box:hover {
+  transform: translateY(-5px);
+}
+
+.box h3 {
+  margin-bottom: 10px;
+  font-size: 16px;
+  color: #4a6cf7;
+}
+
+/* ================= SUMMARY ================= */
+.summary p {
+  margin: 6px 0;
+  font-size: 14px;
+}
+
+/* ================= ANIMATIONS ================= */
+.level, .details {
+  animation: fadeUp 0.4s ease;
+}
+
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(25px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }

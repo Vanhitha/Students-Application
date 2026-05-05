@@ -27,6 +27,7 @@ import { ParentDashboard } from './parent-dashboard/parent-dashboard';
 import { AddTeacher } from './add-new/add-teacher/add-teacher';
 import { AddStaf } from './add-new/add-staf/add-staf';
 import { Invoice } from './invoice/invoice';
+import { BaseChartDirective   } from 'ng2-charts';
 // import { AddDetailsPopup } from './add-details-popup/add-details-popup';
 
 @NgModule({
@@ -51,8 +52,9 @@ import { Invoice } from './invoice/invoice';
     AddStaf,
     Invoice,
     AddTeacher,
+    
   ],
-  imports: [BrowserModule, AppRoutingModule, FormsModule, ReactiveFormsModule],
+  imports: [BrowserModule, AppRoutingModule, FormsModule, ReactiveFormsModule, ],
   providers: [
     provideBrowserGlobalErrorListeners(),
     provideClientHydration(withEventReplay()),
